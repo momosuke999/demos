@@ -13,6 +13,8 @@
 
 @interface interfaceView: UITableViewCell
 
+
+
 @property(weak, nonatomic)IBOutlet UILabel* rateLabel;
 @property(weak, nonatomic)IBOutlet UILabel* detailLabel;
 @property(weak, nonatomic)IBOutlet UILabel* genreLabel;

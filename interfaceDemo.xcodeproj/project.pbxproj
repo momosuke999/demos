@@ -25,7 +25,8 @@
 		F35F544322AF4A4D002B9281 /* UIImage+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F35F543022AF4A4D002B9281 /* UIImage+YYWebImage.m */; };
 		F35F544422AF4A4D002B9281 /* CALayer+YYWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = F35F543122AF4A4D002B9281 /* CALayer+YYWebImage.m */; };
 		F35F544522AF4A4D002B9281 /* YYWebImageOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F35F543322AF4A4D002B9281 /* YYWebImageOperation.m */; };
-		F35F544822AF4CB0002B9281 /* interfaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = F35F544722AF4CB0002B9281 /* interfaceData.m */; };
+		F35F545622AF544E002B9281 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F35F545322AF544D002B9281 /* NSObject+YYModel.m */; };
+		F35F545722AF544E002B9281 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F35F545422AF544D002B9281 /* YYClassInfo.m */; };
 		F36A1F3222AE32EA0047D3AD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A1F3122AE32EA0047D3AD /* AppDelegate.m */; };
 		F36A1F3522AE32EA0047D3AD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A1F3422AE32EA0047D3AD /* ViewController.m */; };
 		F36A1F3822AE32EA0047D3AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36A1F3622AE32EA0047D3AD /* Main.storyboard */; };
@@ -94,8 +95,11 @@
 		F35F543122AF4A4D002B9281 /* CALayer+YYWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+YYWebImage.m"; sourceTree = "<group>"; };
 		F35F543222AF4A4D002B9281 /* YYWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYWebImage.h; sourceTree = "<group>"; };
 		F35F543322AF4A4D002B9281 /* YYWebImageOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYWebImageOperation.m; sourceTree = "<group>"; };
-		F35F544622AF4CA1002B9281 /* interfaceData.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = interfaceData.h; sourceTree = "<group>"; };
-		F35F544722AF4CB0002B9281 /* interfaceData.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = interfaceData.m; sourceTree = "<group>"; };
+		F35F545122AF544D002B9281 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
+		F35F545222AF544D002B9281 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		F35F545322AF544D002B9281 /* NSObject+YYModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+YYModel.m"; sourceTree = "<group>"; };
+		F35F545422AF544D002B9281 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
+		F35F545522AF544D002B9281 /* NSObject+YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+YYModel.h"; sourceTree = "<group>"; };
 		F36A1F2D22AE32EA0047D3AD /* interfaceDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = interfaceDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36A1F3022AE32EA0047D3AD /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F36A1F3122AE32EA0047D3AD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -212,6 +216,19 @@
 			path = Categories;
 			sourceTree = "<group>";
 		};
+		F35F545022AF544D002B9281 /* YYModel */ = {
+			isa = PBXGroup;
+			children = (
+				F35F545122AF544D002B9281 /* YYClassInfo.h */,
+				F35F545222AF544D002B9281 /* YYModel.h */,
+				F35F545322AF544D002B9281 /* NSObject+YYModel.m */,
+				F35F545422AF544D002B9281 /* YYClassInfo.m */,
+				F35F545522AF544D002B9281 /* NSObject+YYModel.h */,
+			);
+			name = YYModel;
+			path = "../../YYModel-master/YYModel";
+			sourceTree = "<group>";
+		};
 		F36A1F2422AE32EA0047D3AD = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +259,7 @@
 				F36A1F6922AE33CA0047D3AD /* interfaceView */,
 				F36A1F6A22AE33E40047D3AD /* interfaceModel */,
 				F35F540B22AF4A4D002B9281 /* YYWebImage */,
+				F35F545022AF544D002B9281 /* YYModel */,
 				F36A1F3622AE32EA0047D3AD /* Main.storyboard */,
 				F36A1F3922AE32EB0047D3AD /* Assets.xcassets */,
 				F36A1F3B22AE32EB0047D3AD /* LaunchScreen.storyboard */,
@@ -290,8 +308,6 @@
 		F36A1F6A22AE33E40047D3AD /* interfaceModel */ = {
 			isa = PBXGroup;
 			children = (
-				F35F544622AF4CA1002B9281 /* interfaceData.h */,
-				F35F544722AF4CB0002B9281 /* interfaceData.m */,
 				F36A1F6522AE33480047D3AD /* interfaceModel.h */,
 				F36A1F6622AE335E0047D3AD /* interfaceModel.m */,
 			);
@@ -442,7 +458,6 @@
 				F35F543422AF4A4D002B9281 /* YYImageCache.m in Sources */,
 				F35F543E22AF4A4D002B9281 /* YYAnimatedImageView.m in Sources */,
 				F35F543B22AF4A4D002B9281 /* YYImage.m in Sources */,
-				F35F544822AF4CB0002B9281 /* interfaceData.m in Sources */,
 				F35F543522AF4A4D002B9281 /* YYDiskCache.m in Sources */,
 				F35F543C22AF4A4D002B9281 /* YYImageCoder.m in Sources */,
 				F35F543D22AF4A4D002B9281 /* YYFrameImage.m in Sources */,
@@ -450,6 +465,7 @@
 				F35F543622AF4A4D002B9281 /* YYCache.m in Sources */,
 				F35F544322AF4A4D002B9281 /* UIImage+YYWebImage.m in Sources */,
 				F35F543822AF4A4D002B9281 /* YYMemoryCache.m in Sources */,
+				F35F545622AF544E002B9281 /* NSObject+YYModel.m in Sources */,
 				F35F544022AF4A4D002B9281 /* UIButton+YYWebImage.m in Sources */,
 				F35F544122AF4A4D002B9281 /* UIImageView+YYWebImage.m in Sources */,
 				F35F543722AF4A4D002B9281 /* YYKVStorage.m in Sources */,
@@ -460,6 +476,7 @@
 				F36A1F3222AE32EA0047D3AD /* AppDelegate.m in Sources */,
 				F35F544422AF4A4D002B9281 /* CALayer+YYWebImage.m in Sources */,
 				F35F544522AF4A4D002B9281 /* YYWebImageOperation.m in Sources */,
+				F35F545722AF544E002B9281 /* YYClassInfo.m in Sources */,
 				F35F543F22AF4A4D002B9281 /* _YYWebImageSetter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

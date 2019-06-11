@@ -18,13 +18,7 @@
     //_iconLabel.images = [UIImage imageNamed:InterfaceM.icon];
     UIImageView * _icon;
     _icon.yy_imageURL = [NSURL URLWithString:InterfaceM.images];
-    _nameLabel.text = InterfaceM.name;
-    _rateLabel.text = InterfaceM.rate;
-    _pubdateLabel.text = InterfaceM.pubdate;
-    _idnLabel.text = InterfaceM.idn;
-    _linkLabel.text = InterfaceM.link;
-    _detailLabel.text = InterfaceM.detail;
-    _genreLabel.text = InterfaceM.genre;
+
     
 }
 
