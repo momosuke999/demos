@@ -8,13 +8,13 @@
 
 //#ifndef interfaceModel_h
 #define interfaceModel_h
-
+#import <UIKit/UIKit.h>
 @interface interfaceModel: NSObject
 
 @property(nonatomic, copy)NSString * rate;
 @property(nonatomic, copy)NSString * detail;
 @property(nonatomic, copy)NSString * genre;
-@property(nonatomic, copy)NSString * icon;
+@property(nonatomic, copy) NSString * images;
 @property(nonatomic, copy)NSString * pubdate;
 @property(nonatomic,copy)NSString * name;
 @property(nonatomic, copy)NSString * link;

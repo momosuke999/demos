@@ -10,12 +10,14 @@
 #import "interfaceView.h"
 #import "interfaceModel.h"
 #import <UIKit/UIKit.h>
-
+#import "YYWebImage.h"
 
 @implementation interfaceView
 
 -(void)setInterfaceM:(interfaceModel *)InterfaceM{
-    _iconLabel.images = [UIImage imageNamed:InterfaceM.icon];
+    //_iconLabel.images = [UIImage imageNamed:InterfaceM.icon];
+    UIImageView * _icon;
+    _icon.yy_imageURL = [NSURL URLWithString:InterfaceM.images];
     _nameLabel.text = InterfaceM.name;
     _rateLabel.text = InterfaceM.rate;
     _pubdateLabel.text = InterfaceM.pubdate;

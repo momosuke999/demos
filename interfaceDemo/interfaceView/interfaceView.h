@@ -19,9 +19,10 @@
 @property(weak, nonatomic)IBOutlet UILabel* pubdateLabel;
 @property(weak, nonatomic)IBOutlet UILabel* linkLabel;
 @property(weak, nonatomic)IBOutlet UILabel* idnLabel;
-@property(weak, nonatomic)IBOutlet UIImage* iconLabel;
+//@property(weak, nonatomic)IBOutlet UIImageView* iconLabel;
 @property(weak, nonatomic)IBOutlet UILabel* nameLabel;
 
-@property (nonatomic, readwrite) interfaceModel * InterfaceM;
+
+@property (nonatomic, strong) interfaceModel * InterfaceM;
 
 @end/* interfaceView_h */
