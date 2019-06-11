@@ -41,6 +41,8 @@
 
 @property(nonatomic, strong) data_avatars * images;
 
+@property(nonatomic, strong) NSString * year;
+
 @property(nonatomic,copy)NSString * alt;
 
 @property(nonatomic, copy)NSString * idm;
@@ -99,7 +101,7 @@
 //dataCasts
 @interface data_casts : NSObject
 
-@property(nonatomic, strong) data_avatars *avatars1;
+@property(nonatomic, strong) data_avatars * avatars1;
 
 @property(nonatomic, copy) NSString * name_en1;
 

@@ -8,21 +8,11 @@
 
 //#ifndef interfaceView_h
 #define interfaceView_h
-@class interfaceModel;
+//@class interfaceModel;
 #import <UIKit/UIKit.h>
-
+#import "interfaceModel.h"
 @interface interfaceView: UITableViewCell
 
-
-
-@property(weak, nonatomic)IBOutlet UILabel* rateLabel;
-@property(weak, nonatomic)IBOutlet UILabel* detailLabel;
-@property(weak, nonatomic)IBOutlet UILabel* genreLabel;
-@property(weak, nonatomic)IBOutlet UILabel* pubdateLabel;
-@property(weak, nonatomic)IBOutlet UILabel* linkLabel;
-@property(weak, nonatomic)IBOutlet UILabel* idnLabel;
-//@property(weak, nonatomic)IBOutlet UIImageView* iconLabel;
-@property(weak, nonatomic)IBOutlet UILabel* nameLabel;
 
 
 @property (nonatomic, strong) interfaceModel * InterfaceM;
