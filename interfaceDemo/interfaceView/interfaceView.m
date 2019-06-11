@@ -21,6 +21,8 @@
     UILabel * pubdateLabel;
     UILabel * genreLabel;
     UILabel * rateLable;
+    UILabel * castnameLabel;
+    UILabel  * castsnameenLabel;
 }
 
 
@@ -34,37 +36,38 @@
     NSArray * directorsArray = InterfaceM.directors;
     
     UIImageView * _icon1;
-  //  UIImageView * _icon2;
-   // UIImageView * _icon3;
-    UIImageView * _icon4;
-  //  UIImageView * _icon5;
-   // UIImageView * _icon6;
-   
 
+    UIImageView * _icon4;
+
+   
+    NSString * result = @"";
     for(int i = 0; i < castsArray.count; i++){
         data_casts * SetModel1 = castsArray[i];
-        
-        NSString *tempName1 = SetModel1.avatars1.small;
-       // NSString *tempName2 = SetModel1.avatars1.large;
-       // NSString *tempName3 = SetModel1.avatars1.medium;
-        
-        _icon1.yy_imageURL = [NSURL URLWithString:tempName1];
-     //   _icon2.yy_imageURL = [NSURL URLWithString:tempName3];
-      //  _icon3.yy_imageURL = [NSURL URLWithString:tempName3];
-        
-        
+ 
         NSString *nameT = SetModel1.name1;
-        NSString *nameEnT = SetModel1.name_en1;
-
+        result = [result stringByAppendingString:nameT];
         if(i< castsArray.count - 1){
             
-            
+            result = [result stringByAppendingString:@", "];
+        }
+    }
+    
+    castnameLabel.text = result;
+
+    NSString * result2 = @"";
+    for(int i = 0; i < castsArray.count; i++){
+        data_casts * SetModel1 = castsArray[i];
+        NSString *nameT = SetModel1.name_en1;
+        //  NSString *nameEnT = SetModel1.name_en1;
+        result2 = [result2 stringByAppendingString:nameT];
+        if(i< castsArray.count - 1){
+            result2 = [result2 stringByAppendingString:@", "];
         }
         
     }
     
-
-
+    castsnameenLabel.text = result2;
+    
     
     
     UIImageView * _icon7;
