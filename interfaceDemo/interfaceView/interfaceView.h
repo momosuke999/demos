@@ -13,8 +13,7 @@
 #import "interfaceModel.h"
 @interface interfaceView: UITableViewCell
 
-
-
 @property (nonatomic, strong) interfaceModel * InterfaceM;
+
 
 @end/* interfaceView_h */

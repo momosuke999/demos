@@ -15,7 +15,7 @@
 //interfaceModel
 @interface interfaceModel: NSObject
 
-@property(nonatomic,strong) data_rating *rate;
+@property(nonatomic,strong) data_rating * rate;
 
 @property(nonatomic,strong) NSArray * genres;
 
@@ -56,15 +56,15 @@
 //dataRating
 @interface data_rating : NSObject
 
-@property(nonatomic,assign) NSInteger * max;
+@property(nonatomic,assign) NSInteger max;
 
-@property(nonatomic,assign) NSInteger * average;
+@property(nonatomic,assign) NSInteger average;
 
 @property(nonatomic, strong) data_details * details;
 
-@property(nonatomic,assign) NSInteger * stars;
+@property(nonatomic,assign) NSInteger stars;
 
-@property(nonatomic, assign) NSInteger * min;
+@property(nonatomic, assign) NSInteger min;
 
 @end
 
@@ -73,15 +73,15 @@
 //dataDetails
 @interface data_details: NSObject
 
-@property(nonatomic,assign) NSInteger * one;
+@property(nonatomic,assign) NSInteger one;
 
-@property(nonatomic,assign) NSInteger * two;
+@property(nonatomic,assign) NSInteger two;
 
-@property(nonatomic,assign) NSInteger * three;
+@property(nonatomic,assign) NSInteger three;
 
-@property(nonatomic,assign) NSInteger * four;
+@property(nonatomic,assign) NSInteger four;
 
-@property(nonatomic,assign) NSInteger * five;
+@property(nonatomic,assign) NSInteger five;
 
 @end
 

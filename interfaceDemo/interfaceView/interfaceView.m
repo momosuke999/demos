@@ -11,18 +11,42 @@
 #import "interfaceModel.h"
 #import <UIKit/UIKit.h>
 #import "YYWebImage.h"
+#import "Masonry.h"
 
 @class data_casts;
 
 @implementation interfaceView{
-    UILabel * castsLabel;
-    UILabel * directorsLabel;
-    UIImage * icon;
-    UILabel * pubdateLabel;
-    UILabel * genreLabel;
-    UILabel * rateLable;
-    UILabel * castnameLabel;
-    UILabel  * castsnameenLabel;
+    //UILabel * castsLabel;
+    //UILabel * directorsLabel;
+    
+    UILabel * _filmNameLabel;
+    
+    UILabel * _filmNameEnLabel;
+    
+    UIImageView * _filmIcon;
+    
+    UILabel * _rateAverageLabel; //connect with details
+    
+    UILabel * _starsLabel;
+    
+    UIImageView * _CastsIcon; // connect with alt
+    
+    UILabel * _castnameLabel; //connect with alt
+    
+    UILabel * _castsnameenLabel;
+    
+    UIImageView * _DirectorsIcon; // connect with alt
+    
+    UILabel * _directorsNameLabel; //connect with alt
+    
+    UILabel * _directorsNameEnLabel;
+    
+    UILabel * _pubdateLabel;
+    
+    UILabel * _mainland_pubdateLabel;
+    
+    UILabel * _genreLabel;
+    
 }
 
 
@@ -30,56 +54,209 @@
 -(void)setInterfaceM:(interfaceModel *)InterfaceM{
     //_iconLabel.images = [UIImage imageNamed:InterfaceM.icon];
 
-    //set update for avartas
     
-    NSArray * castsArray = InterfaceM.casts;
-    NSArray * directorsArray = InterfaceM.directors;
+//--------------------set model for non array lebels-------------
     
-    UIImageView * _icon1;
+    _filmNameLabel.text = InterfaceM.tile;
+    _filmNameEnLabel.text = InterfaceM.original_title;
+    
+    _filmIcon.yy_imageURL = [NSURL URLWithString:InterfaceM.images.small];
+    
+    _mainland_pubdateLabel.text = InterfaceM.mainland_pubdate;
 
-    UIImageView * _icon4;
-
-   
-    NSString * result = @"";
-    for(int i = 0; i < castsArray.count; i++){
-        data_casts * SetModel1 = castsArray[i];
+    //average
+    _rateAverageLabel.text = [NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.average];
+    
+    //stars
+    _starsLabel.text =[NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.stars];
  
-        NSString *nameT = SetModel1.name1;
-        result = [result stringByAppendingString:nameT];
-        if(i< castsArray.count - 1){
-            
-            result = [result stringByAppendingString:@", "];
-        }
-    }
     
-    castnameLabel.text = result;
-
-    NSString * result2 = @"";
-    for(int i = 0; i < castsArray.count; i++){
-        data_casts * SetModel1 = castsArray[i];
-        NSString *nameT = SetModel1.name_en1;
-        //  NSString *nameEnT = SetModel1.name_en1;
-        result2 = [result2 stringByAppendingString:nameT];
-        if(i< castsArray.count - 1){
-            result2 = [result2 stringByAppendingString:@", "];
+    
+ //******************set update for array labels without image**********************//
+    
+    //1.pubdate
+    NSArray * pubdateArray = InterfaceM.pubdates;
+    NSString * pubdateR= @"";
+    for (int i = 0; i < pubdateArray.count; i++){
+        NSString * tempName = pubdateArray[i];
+        pubdateR = [pubdateR stringByAppendingString:tempName];
+        if(i <pubdateArray.count-1){
+            pubdateR =[pubdateR stringByAppendingString:@", "];
         }
         
     }
     
-    castsnameenLabel.text = result2;
+    _genreLabel.text = pubdateR;
     
     
     
-    UIImageView * _icon7;
-    UIImageView * _icon8;
-    UIImageView * _icon9;
-    _icon7.yy_imageURL = [NSURL URLWithString:InterfaceM.images.large];
-    _icon8.yy_imageURL = [NSURL URLWithString:InterfaceM.images.medium];
-    _icon9.yy_imageURL = [NSURL URLWithString:InterfaceM.images.small];
+    //2.genre
+    NSArray * genreArray = InterfaceM.genres;
+    NSString * genreR= @"";
+    for(int i = 0; i < genreArray.count; i++){
+        NSString * tempName = genreArray[i];
+        genreR = [genreR stringByAppendingString:tempName];
+        if(i <genreArray.count-1){
+            genreR = [genreR stringByAppendingString:@", "];
+        }
+    
+    }
+    
+    _genreLabel.text = genreR;
+    
+    
+    //3.castname
+    NSArray * castnameArray = InterfaceM.casts;
+    NSString* castR = @"";
+    for(int i =0; i < castnameArray.count; i++){
+        data_casts * setModel= castnameArray[i];
+        NSString* tempName = setModel.name1;
+        castR = [castR stringByAppendingString:tempName ];
+        if(i< castnameArray.count -1){
+            castR = [castR stringByAppendingString:@", "];
+        }
+    }
+    _castnameLabel.text = castR;
     
     
     
+    //4.castnameEn
+    NSArray * castnameEnArray = InterfaceM.casts;
+    NSString* castEnR = @"";
+    for(int i =0; i < castnameEnArray.count; i++){
+        data_casts * setModel= castnameEnArray[i];
+        NSString* tempName = setModel.name_en1;
+        castEnR = [castEnR stringByAppendingString:tempName ];
+        if(i< castnameEnArray.count -1){
+            castEnR = [castEnR stringByAppendingString:@", "];
+        }
+    }
+    _castsnameenLabel.text = castEnR;
     
+    
+    //5.directorname
+    NSArray * directnameArray = InterfaceM.directors;
+    NSString* directnameR = @"";
+    for(int i =0; i < directnameArray.count; i++){
+        data_directors * setModel= directnameArray[i];
+        NSString* tempName = setModel.name2;
+        directnameR= [directnameR stringByAppendingString:tempName ];
+        if(i< directnameArray.count -1){
+            directnameR = [directnameR stringByAppendingString:@", "];
+        }
+    }
+    _directorsNameLabel.text = directnameR;
+    
+    
+    //6.directornameEn
+    NSArray * directnameEnArray = InterfaceM.directors;
+    NSString* directnameEnR = @"";
+    for(int i =0; i < directnameEnArray.count; i++){
+        data_directors * setModel= directnameEnArray[i];
+        NSString* tempName = setModel.name_en2;
+        directnameEnR= [directnameEnR stringByAppendingString:tempName ];
+        if(i< directnameEnArray.count -1){
+            directnameEnR = [directnameEnR stringByAppendingString:@", "];
+        }
+    }
+    _directorsNameEnLabel.text = directnameEnR;
+    
+    
+    
+ //******************set update for array labels with image**********************//
+    
+    //cast icon
+    
+    NSArray * castIconArray = InterfaceM.casts;
+    NSString * castIconT = @"";
+    for(int i = 0; i < castnameArray.count; i++){
+        data_casts * SetModel = castIconArray[i];
+        NSString* TempAlt = SetModel.avatars1.small;
+        castIconT = [castIconT stringByAppendingString:TempAlt];
+        if(i < castIconArray.count -1){
+            castIconT = [castIconT stringByAppendingString:@", "];
+        }
+    }
+    _CastsIcon.yy_imageURL = [NSURL URLWithString:castIconT];
+    
+    //director icon
+    NSArray * directIconArray = InterfaceM.directors;
+    NSString * directIconT = @"";
+    for(int i = 0; i < directnameArray.count; i++){
+        data_directors * SetModel = directIconArray[i];
+        NSString* TempAlt = SetModel.avartas2.small;
+        directIconT = [directIconT stringByAppendingString:TempAlt];
+        if(i < directIconArray.count -1){
+           directIconT = [directIconT stringByAppendingString:@", "];
+        }
+    }
+    _DirectorsIcon.yy_imageURL = [NSURL URLWithString:directIconT];
+    
+}
+
+
+
+ //******************-creat top, center, foot view-**********************//
+
+-(void) createControl{
+    [self createTopView];
+    
+    [self creatCenterView];
+    
+    [self createFooterView];
+    
+    [self creatGrayView];
+}
+
+
+
+//top view with film name and mainland pubdate
+-(void)createTopView{
+    UIView *topView = [[UIView alloc]init];
+    [self.contentView addSubview:topView];
+    [topView mas_makeConstraints:^(MASConstraintMaker * make) {
+        make.left.top.right.mas_equalTo(0);
+        make.height.mas_equalTo(44);
+    }];
+    
+    //film title
+    UILabel * titleLabel = [[UILabel alloc] init];
+    [topView addSubview:titleLabel];
+    [titleLabel mas_makeConstraints:^(MASConstraintMaker * make){
+        make.centerY.mas_equalTo(topView);
+        make.right.mas_equalTo(-15);
+    }];
+    
+    UILabel * mainlandLabel = [[UILabel alloc] init];
+    [topView addSubview: mainlandLabel];
+    [mainlandLabel mas_makeConstraints:^(MASConstraintMaker * make){
+        make.centerY.mas_equalTo(topView);
+        make.left.mas_equalTo(15);
+    }];
+    
+}
+
+
+//center view with icon, directer, cast
+-(void)creatCenterView{
+    UIView * centerView = [[UIView alloc]init];
+    [self.contentView addSubview:centerView];
+    [centerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right,mas_equalTo(0);
+        make.top.mas_equalTo(44);
+        make.height.mas_equalTo(109+15);
+    }];
+    
+}
+
+
+//foot view with average rating and stars...
+-(void)createFooterView{
+    
+}
+
+//gray underline
+-(void)creatGrayView{
     
 }
 

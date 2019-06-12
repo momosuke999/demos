@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "interfaceDemo/interfaceView/interfaceView.m"
-            timestampString = "581938649.7949719"
+            timestampString = "582004232.721138"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "-setInterfaceM:"
             landmarkType = "7">
          </BreakpointContent>
