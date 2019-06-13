@@ -220,19 +220,21 @@
     }];
     
     //film title
-    UILabel * titleLabel = [[UILabel alloc] init];
+    interfaceView * titleLabel = [[interfaceView alloc] init];
     [topView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker * make){
         make.centerY.mas_equalTo(topView);
         make.right.mas_equalTo(-15);
     }];
+   // _filmNameLabel = titleLabel;
     
-    UILabel * mainlandLabel = [[UILabel alloc] init];
+    interfaceView * mainlandLabel = [[interfaceView alloc] init];
     [topView addSubview: mainlandLabel];
     [mainlandLabel mas_makeConstraints:^(MASConstraintMaker * make){
         make.centerY.mas_equalTo(topView);
         make.left.mas_equalTo(15);
     }];
+   // _mainland_pubdateLabel = mainlandLabel;
     
 }
 
@@ -242,22 +244,94 @@
     UIView * centerView = [[UIView alloc]init];
     [self.contentView addSubview:centerView];
     [centerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right,mas_equalTo(0);
+        make.left.right.mas_equalTo(0);
         make.top.mas_equalTo(44);
         make.height.mas_equalTo(109+15);
     }];
+    
+    //icon
+   UIImageView *iconLabel = [[UIImageView alloc] init];
+    [centerView addSubview:iconLabel];
+    [iconLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(15);
+        make.top.mas_equalTo(iconLabel.mas_right).mas_equalTo(15);
+    }];
+    _filmIcon = iconLabel;
+
+    
+    //director
+    interfaceView * directLable = [[interfaceView alloc] init];
+    [centerView addSubview:directLable];
+    [directLable mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(directLable.mas_right).mas_equalTo(2);
+        make.top.mas_equalTo(directLable);
+    }];
+    
+    //director icon
+    UIImageView * directIcon = [[UIImageView alloc] init];
+    [centerView addSubview:directIcon];
+    [directIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(directIcon.mas_right).mas_equalTo(2);
+        make.top.mas_equalTo(directIcon);
+    }];
+    _DirectorsIcon = directIcon;
+    
+    //castname
+    interfaceView * castLabel = [[interfaceView alloc]init];
+    [centerView addSubview:castLabel];
+    [castLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(castLabel.mas_right).mas_equalTo(5);
+        make.top.mas_equalTo(castLabel);
+    }];
+    
+    //casts icon
+    UIImageView * castIcon = [[UIImageView alloc] init];
+    [centerView addSubview:castIcon];
+    [castIcon mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(castLabel.mas_right).mas_equalTo(10);
+        make.top.mas_equalTo(castLabel);
+    }];
+    _CastsIcon = castIcon;
     
 }
 
 
 //foot view with average rating and stars...
 -(void)createFooterView{
+    UIView * footerView = [[UIView alloc] init];
+    [self.contentView addSubview:footerView];
+    [footerView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(30);
+        make.bottom.mas_equalTo(-10);
+    }];
     
+    //rate average
+    interfaceView * rateLabel = [[interfaceView alloc] init];
+    [footerView addSubview:rateLabel];
+    [rateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(rateLabel.mas_right).mas_equalTo(0);
+        make.top.mas_equalTo(rateLabel);
+    }];
+    
+    //stars
+    interfaceView * starLabel = [[interfaceView alloc]init];
+    [footerView addSubview:starLabel];
+    [starLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(rateLabel.mas_right).mas_equalTo(6);
+        make.top.mas_equalTo(rateLabel);
+    }];
 }
 
 //gray underline
 -(void)creatGrayView{
-    
+    UIView * grayView = [[UIView alloc] init];
+    grayView.backgroundColor =UIColor.grayColor;
+    [self.contentView addSubview:grayView];
+    [grayView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.mas_equalTo(0);
+        make.height.mas_equalTo(10);
+    }];
 }
 
 @end
