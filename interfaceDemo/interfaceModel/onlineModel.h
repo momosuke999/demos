@@ -9,5 +9,25 @@
 #ifndef onlineModel_h
 #define onlineModel_h
 
+#import "interfaceModel.h"
+#import "MJExtension.h"
+#import "AFNetworking.h"
+#import <UIKit/UIKit.h>
+
+@protocol onlinmDelegate <NSObject>
+
+-(void)getDataSeuccess:(NSArray *) list;
+
+-(void)getDataFail:(NSArray *) message;
+
+@end
+
+@interface onlineModel : NSObject
+
+@property (nonatomic, assign) id<onlinmDelegate> delegate;
+
+-(void)getOnlineData;
+
+@end
 
 #endif /* onlineModel_h */

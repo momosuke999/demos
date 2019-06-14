@@ -11,11 +11,7 @@
 
 @implementation interfaceModel
 
-+(instancetype)interfaceModelWithDict:(NSDictionary *)Dictionary{
-    interfaceModel * interfaceM =[[self alloc] init];
-    [interfaceM setValuesForKeysWithDictionary:Dictionary];
-    return interfaceM;
-}
+
 
 @end
 
