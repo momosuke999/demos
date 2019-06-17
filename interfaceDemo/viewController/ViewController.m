@@ -16,10 +16,18 @@
 
 @implementation ViewController
 
+-(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
+    [self initData];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -82,17 +90,6 @@
     return cell;
 }
 
-/*
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    static NSString *cellIdentifier = @"interfaceIdentifer";
-    interfaceView *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    if (cell == nil){
-        cell = [[interfaceView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
- 
-}*/
 
 
 

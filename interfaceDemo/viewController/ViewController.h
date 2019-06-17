@@ -16,7 +16,7 @@
 //@property (nonatomic,strong) NSArray * myDataArray;
 @property(nonatomic,strong)NSMutableArray * myDataArray;
 @property(nonatomic,strong) onlineModel * onlineM;
-@property(nonatomic,strong) NSMutableArray * myDataArrayTemp;
+
 
 //+(NSDictionary*)readLocalFileWithName:(NSString*) name;
 

@@ -15,7 +15,9 @@
 #define MAS_SHORTHAND
 #define MAS_SHORTHAND_GLOBALS
 
+
 @class data_casts;
+
 
 @implementation interfaceView
     //UILabel * castsLabel;
@@ -50,7 +52,7 @@
         self.filmNameLabel = [[UILabel alloc] init];
         self.filmNameLabel.textColor = [UIColor grayColor];
         self.filmNameLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:22];
-        self.filmNameLabel.text=@"TMW022";
+
         self.filmNameLabel.textAlignment = NSTextAlignmentCenter;
         [mainView addSubview:_filmNameLabel];
         

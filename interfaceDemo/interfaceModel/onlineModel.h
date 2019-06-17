@@ -6,8 +6,7 @@
 //  Copyright © 2019年 CHUXIANWANG. All rights reserved.
 //
 
-#ifndef onlineModel_h
-#define onlineModel_h
+
 
 #import "interfaceModel.h"
 #import "MJExtension.h"
@@ -30,4 +29,4 @@
 
 @end
 
-#endif /* onlineModel_h */
+/* onlineModel_h */
