@@ -14,95 +14,21 @@
 #import "onlineModel.h"
 //#import "interfaceView.m"
 
+
 @implementation ViewController
-
--(NSInteger) numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
-    [self initData];
-    
-}
-
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self.onlineM getOnlineData];
-}
-
-
--(void)initData{
-    UIView * view = [[UIView alloc]init];
-    self.tableView.tableFooterView = view;
-    self.tableView.separatorStyle = NO;//隐藏分割线
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    
-    [self getDataList];
-    [self getModel];
-    
-    self.onlineM.delegate = self;
-}
-
--(onlineModel*)getModel{
-    if(self.onlineM == nil){
-        self.onlineM = [[onlineModel alloc]init ];
-    }
-    return self.onlineM;
-}
-
--(NSMutableArray *) getDataList{
-    if(self.myDataArray == nil){
-        self.myDataArray = [NSMutableArray array];
-    }
-    return self.myDataArray;
+    UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width,self.view.bounds.size.height - 20)];
+    myTableView.delegate = self;
+    myTableView.dataSource = self;
+    [myTableView registerNib:[UINib nibWithNibName:@"interfaceView" bundle:nil] forCellReuseIdentifier:@"interfaceView"];
+    [self.view addSubview:myTableView];
 }
 
 
-//
-
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 200;
-}
-
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.myDataArray.count;
-}
-
-
--(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"interfaceIdentifier";
-    interfaceView *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell ==nil){
-        cell = [[interfaceView alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    NSUInteger row = [indexPath row];
-    if(row<self.myDataArray.count){
-        interfaceModel * model = [[interfaceModel alloc]init];
-        model = [self.myDataArray objectAtIndex:row];
-       cell.filmNameLabel.text = model.tile;
-    }
-    return cell;
-}
-
-
-
-
-
-
-
-
-
-
-
-//Model
-
-/*
 -(NSArray *) myDataArray{
     if(self.myDataArray ==nil){
         NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"]];
@@ -118,55 +44,20 @@
 }
 
 
-//View
 
-    //UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, myTableView.view.bounds.size.width,myTableView.view.bounds.size.height - 20)];
-                                                                             
-                                                                             
-                                                                             
-
-
-
-//number of cells
--(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.myDataArray.count;
 }
 
-//height of table
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+-(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    interfaceView * cell = [tableView dequeueReusableCellWithIdentifier:@"interfaceView" forIndexPath:indexPath];
+    cell.InterfaceM = self.myDataArray[indexPath.row];
+            return cell;
     
-    return 200;
-}
-+(NSDictionary*)readLocalFileWithName:(NSString*) name{
-    NSString * path = [[NSBundle]]
     
 }
 
 
-
-
--(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-   static NSString * cellIdentifier = @"interfaceIdenditifier";
-    interfaceView * cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if(cell ==nil){
-        cell = [[interfaceView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    //cell.InterfaceModel = self.myDataArray[indexPath.row];
-    
-    NSUInteger row = [indexPath row];
-    
-    if(row<self.myDataArray.count){
-        interfaceModel * intV = [[interfaceModel alloc] init];
-        intV = [self.myDataArray objectAtIndex:row];
-        cell.filmNameEnLabel.text = intV.original_title;
-    }
-    
-    cell.filmNameEnLabel.text = @"a";
-    
-
-    return cell;
-}
-
-*/
 
 @end
+

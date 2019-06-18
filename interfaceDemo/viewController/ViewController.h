@@ -14,8 +14,8 @@
 
 @interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource>
 //@property (nonatomic,strong) NSArray * myDataArray;
-@property(nonatomic,strong)NSMutableArray * myDataArray;
-@property(nonatomic,strong) onlineModel * onlineM;
+@property(nonatomic,strong)NSArray * myDataArray;
+//@property(nonatomic,strong) onlineModel * onlineM;
 
 
 //+(NSDictionary*)readLocalFileWithName:(NSString*) name;

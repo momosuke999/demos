@@ -13,6 +13,10 @@
 #import "interfaceModel.h"
 @interface interfaceView: UITableViewCell
 
+@property (nonatomic, strong) interfaceModel *InterfaceM;
+
+
+/*
 @property (nonatomic, strong) interfaceModel * InterfaceModel;
 
 @property (nonatomic, strong) UILabel * filmNameLabel;
@@ -41,5 +45,5 @@
 
 @property (nonatomic, strong)UILabel * mainland_pubdateLabel;
 
- @property (nonatomic, strong)UILabel * genreLabel;
-@end/* interfaceView_h */
+ @property (nonatomic, strong)UILabel * genreLabel;*/
+@end
