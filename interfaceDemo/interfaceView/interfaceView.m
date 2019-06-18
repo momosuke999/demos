@@ -12,46 +12,43 @@
 #import <UIKit/UIKit.h>
 #import "YYWebImage.h"
 #import "Masonry.h"
-#define MAS_SHORTHAND
-#define MAS_SHORTHAND_GLOBALS
-
 
 @class data_casts;
 
+@implementation interfaceView{
+    //UILabel * castsLabel;
+    //UILabel * directorsLabel;
+    
+    UILabel * _filmNameLabel;
+    
+    UILabel * _filmNameEnLabel;
+    
+    UIImageView * _filmIcon;
+    
+    UILabel * _rateAverageLabel;
+    
+    UILabel * _starsLabel;
+    
+    UIImageView * _CastsIcon;
+    
+    UILabel * _castnameLabel;
+    
+    UILabel * _castsnameenLabel;
+    
+    UIImageView * _DirectorsIcon;
+    
+    UILabel * _directorsNameLabel;
+    
+    UILabel * _directorsNameEnLabel;
+    
+    UILabel * _pubdateLabel;
+    
+    UILabel * _mainland_pubdateLabel;
+    
+    UILabel * _genreLabel;
+    
+}
 
-@implementation interfaceView
-
-    UILabel * castsLabel;
-
-    UILabel * directorsLabel;
-
-    UILabel * filmNameLabel;
-
-    UILabel * filmNameEnLabel;
-
-    UIImageView * filmIcon;
-
-    UILabel * mainland_pubdateLabel;
-
-    UILabel * rateAverageLabel;
-
-    UILabel * starsLabel;
-
-    UILabel * genreLabel;
-
-    UIImageView * CastsIcon;
-
-    UILabel * pubdateLabel;
-
-    UILabel * castnameLabel;
-
-    UILabel *  castsnameenLabel;
-
-    UILabel *  directorsNameLabel;
-
-    UILabel * directorsNameEnLabel;
-
-    UIImageView * DirectorsIcon;
 
 
 -(void)setInterfaceM:(interfaceModel *)InterfaceM{
@@ -60,18 +57,18 @@
     
     //--------------------set model for non array lebels-------------
     
-    filmNameLabel.text = InterfaceM.tile;
-    filmNameEnLabel.text = InterfaceM.original_title;
+    _filmNameLabel.text = InterfaceM.tile;
+    _filmNameEnLabel.text = InterfaceM.original_title;
     
-    filmIcon.yy_imageURL = [NSURL URLWithString:InterfaceM.images.small];
+    _filmIcon.yy_imageURL = [NSURL URLWithString:InterfaceM.images.small];
     
-    mainland_pubdateLabel.text = InterfaceM.mainland_pubdate;
+    _mainland_pubdateLabel.text = InterfaceM.mainland_pubdate;
     
     //average
-    rateAverageLabel.text = [NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.average];
+    _rateAverageLabel.text = [NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.average];
     
     //stars
-    starsLabel.text =[NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.stars];
+    _starsLabel.text =[NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.stars];
     
     
     
@@ -89,7 +86,7 @@
         
     }
     
-    pubdateLabel.text = pubdateR;
+    _genreLabel.text = pubdateR;
     
     
     
@@ -105,7 +102,7 @@
         
     }
     
-    genreLabel.text = genreR;
+    _genreLabel.text = genreR;
     
     
     //3.castname
@@ -119,7 +116,7 @@
             castR = [castR stringByAppendingString:@", "];
         }
     }
-    castnameLabel.text = castR;
+    _castnameLabel.text= castR;
     
     
     
@@ -134,7 +131,7 @@
             castEnR = [castEnR stringByAppendingString:@", "];
         }
     }
-    castsnameenLabel.text = castEnR;
+    _castsnameenLabel.text = castEnR;
     
     
     //5.directorname
@@ -148,7 +145,7 @@
             directnameR = [directnameR stringByAppendingString:@", "];
         }
     }
-    directorsNameLabel.text = directnameR;
+    _directorsNameLabel.text = directnameR;
     
     
     //6.directornameEn
@@ -162,7 +159,7 @@
             directnameEnR = [directnameEnR stringByAppendingString:@", "];
         }
     }
-    directorsNameEnLabel.text = directnameEnR;
+    _directorsNameEnLabel.text = directnameEnR;
     
     
     
@@ -171,35 +168,35 @@
     //cast icon
     
     NSArray * castIconArray = InterfaceM.casts;
-     NSString * castIconT = @"";
-     for(int i = 0; i < castnameArray.count; i++){
-     data_casts * SetModel = castIconArray[i];
-     NSString* TempAlt = SetModel.avatars1.small;
-     castIconT = [castIconT stringByAppendingString:TempAlt];
-     if(i < castIconArray.count -1){
-     castIconT = [castIconT stringByAppendingString:@", "];
-     }
-     }
-     CastsIcon.yy_imageURL = [NSURL URLWithString:castIconT];
-     
-     //director icon
-     NSArray * directIconArray = InterfaceM.directors;
-     NSString * directIconT = @"";
-     for(int i = 0; i < directnameArray.count; i++){
-     data_directors * SetModel = directIconArray[i];
-     NSString* TempAlt = SetModel.avartas2.small;
-     directIconT = [directIconT stringByAppendingString:TempAlt];
-     if(i < directIconArray.count -1){
-     directIconT = [directIconT stringByAppendingString:@", "];
-     }
-     }
-     DirectorsIcon.yy_imageURL = [NSURL URLWithString:directIconT];
-     
+    NSString * castIconT = @"";
+    for(int i = 0; i < castnameArray.count; i++){
+        data_casts * SetModel = castIconArray[i];
+        NSString* TempAlt = SetModel.avatars1.small;
+        castIconT = [castIconT stringByAppendingString:TempAlt];
+        if(i < castIconArray.count -1){
+            castIconT = [castIconT stringByAppendingString:@", "];
+        }
+    }
+    _CastsIcon.yy_imageURL = [NSURL URLWithString:castIconT];
+    
+    //director icon
+    NSArray * directIconArray = InterfaceM.directors;
+    NSString * directIconT = @"";
+    for(int i = 0; i < directnameArray.count; i++){
+        data_directors * SetModel = directIconArray[i];
+        NSString* TempAlt = SetModel.avartas2.small;
+        directIconT = [directIconT stringByAppendingString:TempAlt];
+        if(i < directIconArray.count -1){
+            directIconT = [directIconT stringByAppendingString:@", "];
+        }
+    }
+    _DirectorsIcon.yy_imageURL = [NSURL URLWithString:directIconT];
+    
 }
 
 
 
-//******************-creat top, center, foot view-**********************//
+//******************-creat top, center, footer view-**********************//
 
 -(void) createControl{
     [self createTopView];
@@ -227,7 +224,7 @@
     [topView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker * make){
         make.centerY.mas_equalTo(topView);
-        make.right.mas_equalTo(-15);
+        make.right.mas_equalTo(-20);
     }];
     // _filmNameLabel = titleLabel;
     
@@ -259,7 +256,7 @@
         make.left.mas_equalTo(15);
         make.top.mas_equalTo(iconLabel.mas_right).mas_equalTo(15);
     }];
-    filmIcon = iconLabel;
+    _filmIcon = iconLabel;
     
     
     //director
@@ -277,7 +274,7 @@
         make.left.mas_equalTo(directIcon.mas_right).mas_equalTo(2);
         make.top.mas_equalTo(directIcon);
     }];
-    DirectorsIcon = directIcon;
+    _DirectorsIcon = directIcon;
     
     //castname
     interfaceView * castLabel = [[interfaceView alloc]init];
@@ -294,7 +291,7 @@
         make.left.mas_equalTo(castLabel.mas_right).mas_equalTo(10);
         make.top.mas_equalTo(castLabel);
     }];
-    CastsIcon = castIcon;
+    _CastsIcon = castIcon;
     
 }
 

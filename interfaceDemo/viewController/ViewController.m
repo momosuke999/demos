@@ -9,11 +9,6 @@
 #import "ViewController.h"
 #import "interfaceModel.h"
 #import "interfaceView.h"
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
-#import "onlineModel.h"
-//#import "interfaceView.m"
-
 
 @implementation ViewController
 
@@ -21,17 +16,17 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     self.view.backgroundColor = [UIColor whiteColor];
-    UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width,self.view.bounds.size.height - 20)];
+    //initialize the tableview
+    UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20)];
     myTableView.delegate = self;
     myTableView.dataSource = self;
-    [myTableView registerNib:[UINib nibWithNibName:@"interfaceView" bundle:nil] forCellReuseIdentifier:@"interfaceView"];
+    [myTableView registerNib:[UINib nibWithNibName:@"cellidentifier" bundle:nil] forCellReuseIdentifier:@"cellidentifier"];
     [self.view addSubview:myTableView];
-}
-
-
--(NSArray *) myDataArray{
-    if(self.myDataArray ==nil){
+    
+    if(self.myDataArray == nil){
+        //load data...
         NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"data" ofType:@"json"]];
+        //initialize data
         NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:array.count];
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             interfaceModel * interfacem = [interfaceModel interfaceModelWithDict:obj];
@@ -39,25 +34,27 @@
         }];
         self.myDataArray = [arrayM copy];
     }
-    return self.myDataArray;
-    
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 130;
+}
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellidentifier = @"cellidentifier";
+    interfaceView * cell = [tableView dequeueReusableCellWithIdentifier:cellidentifier];
+    if(cell == nil){
+        cell = [[interfaceView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellidentifier];
+    }
+    cell.InterfaceM = _myDataArray[indexPath.row];//load data and view to cells
+    return cell;
+}
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+-(NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.myDataArray.count;
-}
-
--(UITableViewCell*) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    interfaceView * cell = [tableView dequeueReusableCellWithIdentifier:@"interfaceView" forIndexPath:indexPath];
-    cell.InterfaceM = self.myDataArray[indexPath.row];
-            return cell;
-    
-    
 }
 
 
 
 @end
-

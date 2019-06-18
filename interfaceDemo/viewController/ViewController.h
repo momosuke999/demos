@@ -7,18 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "interfaceView.h"
 #import "interfaceModel.h"
-#import "onlineModel.h"
-
-
-@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource>
-//@property (nonatomic,strong) NSArray * myDataArray;
-@property(nonatomic,strong)NSArray * myDataArray;
-//@property(nonatomic,strong) onlineModel * onlineM;
-
-
-//+(NSDictionary*)readLocalFileWithName:(NSString*) name;
+@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic,strong) NSArray * myDataArray;
 
 @end
 

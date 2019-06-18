@@ -10,32 +10,36 @@
 #import "interfaceModel.h"
 
 @implementation interfaceModel
-+ (NSDictionary<NSString *,id> *)modelContainerPropertyGenericClass{
-    return @{@"data_rating_set" : [data_rating class]};
+
++(instancetype)interfaceModelWithDict:(NSDictionary *)Dictionary{
+    interfaceModel * interfaceM =[[self alloc] init];
+    [interfaceM setValuesForKeysWithDictionary:Dictionary];
+    return interfaceM;
 }
+
 @end
 
-@implementation  data_rating
+@implementation data_directors
 
+
+@end
+
+@implementation data_details
+
+
+@end
+
+
+@implementation data_avatars
+
+@end
+
+
+@implementation data_rating
 
 @end
 
 
 @implementation data_casts
-
-@end
-
-@implementation data_avatars
-
-
-@end
-
-@implementation  data_details
-
-
-@end
-
-
-@implementation data_directors
 
 @end
