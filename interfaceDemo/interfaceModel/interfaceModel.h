@@ -39,9 +39,9 @@
 
 @property(nonatomic, strong)NSArray * pubdates;
 
-@property(nonatomic, strong) data_avatars * images;
+@property(nonatomic, strong) NSArray * year;
 
-@property(nonatomic, strong) NSString * year;
+@property(nonatomic, strong) data_avatars * images;
 
 @property(nonatomic,copy)NSString * alt;
 

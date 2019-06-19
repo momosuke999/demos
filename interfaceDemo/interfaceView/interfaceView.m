@@ -29,13 +29,21 @@
     
     UILabel * _starsLabel;
     
-    UIImageView * _CastsIcon;
+    UIImageView * _CastsIcon1;
+    
+    UIImageView * _CastsIcon2;
+    
+    UIImageView * _CastsIcon3;
     
     UILabel * _castnameLabel;
     
     UILabel * _castsnameenLabel;
     
     UIImageView * _DirectorsIcon;
+    
+    UIImageView * _DirectorsIcon2;
+    
+    UIImageView * _DirectorsIcon3;
     
     UILabel * _directorsNameLabel;
     
@@ -177,11 +185,16 @@
             castIconT = [castIconT stringByAppendingString:@", "];
         }
     }
-    _CastsIcon.yy_imageURL = [NSURL URLWithString:castIconT];
+  //  _CastsIcon.yy_imageURL = [NSURL URLWithString:castIconT];
     
     //director icon
     NSArray * directIconArray = InterfaceM.directors;
     NSString * directIconT = @"";
+    
+    
+    
+    
+    
     for(int i = 0; i < directnameArray.count; i++){
         data_directors * SetModel = directIconArray[i];
         NSString* TempAlt = SetModel.avartas2.small;
@@ -190,7 +203,7 @@
             directIconT = [directIconT stringByAppendingString:@", "];
         }
     }
-    _DirectorsIcon.yy_imageURL = [NSURL URLWithString:directIconT];
+   // _DirectorsIcon.yy_imageURL = [NSURL URLWithString:directIconT];
     
 }
 
@@ -215,7 +228,7 @@
     UIView *topView = [[UIView alloc]init];
     [self.contentView addSubview:topView];
     [topView mas_makeConstraints:^(MASConstraintMaker * make) {
-        make.left.top.right.mas_equalTo(0);
+        make.left.equalTo(self.contentView);
         make.height.mas_equalTo(44);
     }];
     
@@ -274,7 +287,7 @@
         make.left.mas_equalTo(directIcon.mas_right).mas_equalTo(2);
         make.top.mas_equalTo(directIcon);
     }];
-    _DirectorsIcon = directIcon;
+   // _DirectorsIcon = directIcon;
     
     //castname
     interfaceView * castLabel = [[interfaceView alloc]init];
@@ -291,7 +304,7 @@
         make.left.mas_equalTo(castLabel.mas_right).mas_equalTo(10);
         make.top.mas_equalTo(castLabel);
     }];
-    _CastsIcon = castIcon;
+    //_CastsIcon = castIcon;
     
 }
 
