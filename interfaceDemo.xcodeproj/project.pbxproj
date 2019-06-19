@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F323642422B9DAEA0079B5FB /* data.txt in Resources */ = {isa = PBXBuildFile; fileRef = F323642322B9DAEA0079B5FB /* data.txt */; };
 		F35AB3FA22B0DE0200D0DC93 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F35AB3E122B0DE0200D0DC93 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		F35AB3FB22B0DE0200D0DC93 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F35AB3EA22B0DE0200D0DC93 /* ViewController+MASAdditions.m */; };
 		F35AB3FC22B0DE0200D0DC93 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = F35AB3EE22B0DE0200D0DC93 /* MASCompositeConstraint.m */; };
@@ -87,6 +88,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F323642322B9DAEA0079B5FB /* data.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = data.txt; sourceTree = "<group>"; };
 		F35AB3E022B0DE0200D0DC93 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		F35AB3E122B0DE0200D0DC93 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		F35AB3E222B0DE0200D0DC93 /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				F36A1F6D22AE35120047D3AD /* data.json */,
+				F323642322B9DAEA0079B5FB /* data.txt */,
 			);
 			path = dataSource;
 			sourceTree = "<group>";
@@ -615,6 +618,7 @@
 				F35CC63E22B3434100FC3AD3 /* Info.plist in Resources */,
 				F36A1F3822AE32EA0047D3AD /* Main.storyboard in Resources */,
 				F35AB40422B0DE0200D0DC93 /* Info.plist in Resources */,
+				F323642422B9DAEA0079B5FB /* data.txt in Resources */,
 				F36A1F6E22AE35120047D3AD /* data.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

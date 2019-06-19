@@ -25,7 +25,7 @@
 
 @property(nonatomic, strong) NSArray * duration;
 
-@property(nonatomic, assign) NSInteger * collect_count;
+@property(nonatomic, assign) NSInteger collect_count;
 
 @property(nonatomic, copy) NSString * mainland_pubdate;
 

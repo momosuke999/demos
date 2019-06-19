@@ -17,6 +17,11 @@
     return interfaceM;
 }
 
+-(void)setValue:(id)value forUndefinedKey:(NSString *)key
+{
+    
+}
+
 @end
 
 @implementation data_directors

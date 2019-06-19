@@ -39,12 +39,24 @@
     
    NSDictionary * getDict = [NSJSONSerialization JSONObjectWithData:getJsonData options:kNilOptions error:nil];
     NSLog(@"--textFieldContents---%@-----",getDict);
-    NSArray *result = [NSArray yy_modelArrayWithClass:[interfaceModel class] json:getDict[@"subjects"]];
     
-    NSLog(@"--textFieldContents---%@-----",result);
-        NSLog(@"--count of result---%lu-----",(unsigned long)result.count);
+    NSArray *  subjectsArray = getDict[@"subjects"];
     
-    NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:result.count];
+    NSMutableArray * dataArray = [[NSMutableArray alloc] init];
+    
+    for (NSDictionary * tempDict in subjectsArray) {
+        interfaceModel * model = [interfaceModel interfaceModelWithDict:tempDict];
+        [dataArray addObject:model];
+        
+    }
+    
+    
+   // NSArray *result = [NSArray yy_modelArrayWithClass:[interfaceModel class] json:getDict[@"subjects"]];
+
+  //  NSLog(@"--textFieldContents---%@-----",result);
+    //    NSLog(@"--count of result---%lu-----",(unsigned long)result.count);
+    
+  //  NSMutableArray *arrayM = [NSMutableArray arrayWithCapacity:result.count];
  /*
     [result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
@@ -57,6 +69,7 @@
 
     
    // _myDataArray = [getDict objectForKey:@"subjects"];
+    
     [myTableView reloadData];
 }
 
