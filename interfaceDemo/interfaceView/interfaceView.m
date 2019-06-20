@@ -10,7 +10,7 @@
 #import "interfaceView.h"
 #import "interfaceModel.h"
 #import <UIKit/UIKit.h>
-#import "YYWebImage.h"
+//#import "YYWebImage.h"
 #import "Masonry.h"
 
 @class data_casts;
@@ -19,7 +19,7 @@
     //UILabel * castsLabel;
     //UILabel * directorsLabel;
     
-    UILabel * _filmNameLabel;
+   UILabel * _filmNameLabel;
     
     UILabel * _filmNameEnLabel;
     
@@ -57,47 +57,67 @@
     
 }
 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self =[super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if(self){
+        [self createControl];
+    }
+    return self;
+} //调用create controll
 
 
 -(void)setInterfaceM:(interfaceModel *)InterfaceM{
-    //_iconLabel.images = [UIImage imageNamed:InterfaceM.icon];
     
     
     //--------------------set model for non array lebels-------------
     
-    _filmNameLabel.text = InterfaceM.tile;
-    _filmNameEnLabel.text = InterfaceM.original_title;
+    _filmNameLabel.text = InterfaceM.title;
     
-    _filmIcon.yy_imageURL = [NSURL URLWithString:InterfaceM.images.small];
+    NSString * imageURL =@"https://img1.doubanio.com/vie/photo/s_ratio_poster/public/p2558701068.jpg";
     
-    _mainland_pubdateLabel.text = InterfaceM.mainland_pubdate;
+    //NSData *data = [NSData dataWithContentsOfURL:[NSURL  URLWithString:imageURL]];
+    NSURL * imageurL = [NSURL URLWithString:imageURL];
+    UIImage * image =[UIImage imageWithData: [NSData dataWithContentsOfURL:imageurL]];
+    _filmIcon.image = image;
+    
+    if(InterfaceM.title != InterfaceM.original_title){
+    _mainland_pubdateLabel.text =InterfaceM.original_title;
+    }
+    else{
+        _mainland_pubdateLabel.text = @" ";
+    }
     
     //average
-    _rateAverageLabel.text = [NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.average];
+    //NSString * string4 = @"均分";
+
+    //_rateAverageLabel.text = [NSString stringWithFormat:@"%@: %@", string4, [NSString stringWithFormat:@"%ld", (long)InterfaceM.rating.stars]];
     
     //stars
-    _starsLabel.text =[NSString stringWithFormat:@"%ld", (long)InterfaceM.rate.stars];
+   // _starsLabel.text =[NSString stringWithFormat:@"%ld", (long)InterfaceM.rating.stars];
     
     
     
     //******************set update for array labels without image**********************//
     
     //1.pubdate
+  
     NSArray * pubdateArray = InterfaceM.pubdates;
     NSString * pubdateR= @"";
     for (int i = 0; i < pubdateArray.count; i++){
         NSString * tempName = pubdateArray[i];
         pubdateR = [pubdateR stringByAppendingString:tempName];
         if(i <pubdateArray.count-1){
-            pubdateR =[pubdateR stringByAppendingString:@", "];
+            pubdateR =[pubdateR stringByAppendingString:@","];
         }
         
     }
+    NSString * String3 = @"上映日期";
+    _pubdateLabel.text =[NSString stringWithFormat:@"%@: %@", String3, pubdateR];
+    _pubdateLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _pubdateLabel.numberOfLines = 0;
+    _pubdateLabel.preferredMaxLayoutWidth = 300;
     
-    _genreLabel.text = pubdateR;
-    
-    
-    
+  
     //2.genre
     NSArray * genreArray = InterfaceM.genres;
     NSString * genreR= @"";
@@ -109,24 +129,33 @@
         }
         
     }
+     NSString * string2 = @"影片类型";
+    _genreLabel.text =[NSString stringWithFormat:@"%@: %@", string2, genreR];
     
-    _genreLabel.text = genreR;
+
     
-    
+  
     //3.castname
     NSArray * castnameArray = InterfaceM.casts;
     NSString* castR = @"";
     for(int i =0; i < castnameArray.count; i++){
         data_casts * setModel= castnameArray[i];
-        NSString* tempName = setModel.name1;
-        castR = [castR stringByAppendingString:tempName ];
-        if(i< castnameArray.count -1){
-            castR = [castR stringByAppendingString:@", "];
+        NSString* tempName = [NSString stringWithFormat:@"%@", setModel.name];
+        //NSString* tempName = setModel.name;
+        if(tempName.length){
+            castR = [castR stringByAppendingString:tempName];
+            if(i< castnameArray.count -1){
+                  castR = [castR stringByAppendingString:@", "];
+             }
         }
+    
     }
-    _castnameLabel.text= castR;
     
-    
+ 
+    NSString * string3 = @"主演";
+    _castnameLabel.text= [NSString stringWithFormat: @"%@: %@", string3,castR];
+    NSLog(@"----%@",_castnameLabel.text);
+    /*
     
     //4.castnameEn
     NSArray * castnameEnArray = InterfaceM.casts;
@@ -169,13 +198,13 @@
     }
     _directorsNameEnLabel.text = directnameEnR;
     
-    
+    */
     
     //******************set update for array labels with image**********************//
     
     //cast icon
     
-    NSArray * castIconArray = InterfaceM.casts;
+ /*   NSArray * castIconArray = InterfaceM.casts;
     NSString * castIconT = @"";
     for(int i = 0; i < castnameArray.count; i++){
         data_casts * SetModel = castIconArray[i];
@@ -204,7 +233,7 @@
         }
     }
    // _DirectorsIcon.yy_imageURL = [NSURL URLWithString:directIconT];
-    
+    */
 }
 
 
@@ -214,11 +243,11 @@
 -(void) createControl{
     [self createTopView];
     
-    [self creatCenterView];
+   [self creatCenterView];
     
     [self createFooterView];
     
-    [self creatGrayView];
+   [self creatGrayView];
 }
 
 
@@ -227,28 +256,49 @@
 -(void)createTopView{
     UIView *topView = [[UIView alloc]init];
     [self.contentView addSubview:topView];
-    [topView mas_makeConstraints:^(MASConstraintMaker * make) {
-        make.left.equalTo(self.contentView);
-        make.height.mas_equalTo(44);
+   [topView mas_makeConstraints:^(MASConstraintMaker * make) {
+        make.left.equalTo(self.contentView).offset(0);
+       make.right.equalTo(self.contentView).offset(0);
+     make.height.mas_equalTo(40);
+     make.top.equalTo(self.contentView).offset(0);
+
     }];
-    
+ //   topView.frame = CGRectMake(0, 0, self.frame.size.width, 60);
+   topView.backgroundColor = UIColor.blackColor;
+
     //film title
-    interfaceView * titleLabel = [[interfaceView alloc] init];
-    [topView addSubview:titleLabel];
+   UILabel * titleLabel = [[UILabel alloc] init];
+   [topView addSubview:titleLabel];
     [titleLabel mas_makeConstraints:^(MASConstraintMaker * make){
-        make.centerY.mas_equalTo(topView);
-        make.right.mas_equalTo(-20);
+        make.left.equalTo(topView).offset(0);
+        make.right.equalTo(topView).offset(0);
+        make.height.mas_equalTo(30);
+        make.top.equalTo(topView).offset(5);
+        
     }];
-    // _filmNameLabel = titleLabel;
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.textColor = [UIColor whiteColor];
+    _filmNameLabel = titleLabel;
     
-    interfaceView * mainlandLabel = [[interfaceView alloc] init];
+  //  [topView addSubview:_filmNameLabel];
+  //  _filmNameLabel.backgroundColor = [UIColor blueColor];
+    
+    
+
+    UILabel * mainlandLabel = [[UILabel alloc] init];
     [topView addSubview: mainlandLabel];
     [mainlandLabel mas_makeConstraints:^(MASConstraintMaker * make){
-        make.centerY.mas_equalTo(topView);
-        make.left.mas_equalTo(15);
+     //  make.left.equalTo(topView).offset(0);
+        make.right.equalTo(topView).offset(0);
+        make.height.mas_equalTo(30);
+        make.top.equalTo(topView).offset(5);
+        
     }];
-    // _mainland_pubdateLabel = mainlandLabel;
-    
+    mainlandLabel.font = [UIFont systemFontOfSize:14];
+    mainlandLabel.textColor = [UIColor whiteColor];
+     _mainland_pubdateLabel = mainlandLabel;
+ //   [self.contentView addSubview:_mainland_pubdateLabel];
+
 }
 
 
@@ -257,47 +307,87 @@
     UIView * centerView = [[UIView alloc]init];
     [self.contentView addSubview:centerView];
     [centerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.top.mas_equalTo(44);
-        make.height.mas_equalTo(109+15);
+        make.left.equalTo(self.contentView).offset(0);
+        make.right.equalTo(self.contentView).offset(0);
+        make.height.mas_equalTo(200);
+        make.top.equalTo(self.contentView).offset(45);
     }];
+    centerView.backgroundColor = [UIColor orangeColor];
     
+    
+    //genre
+    
+    UILabel * genreLabel = [[UILabel alloc] init];
+    [centerView addSubview:genreLabel];
+    [genreLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(centerView).offset(80);
+        make.height.mas_equalTo(20);
+        make.top.equalTo(centerView).offset(50);
+    }];
+    genreLabel.font = [UIFont systemFontOfSize:14];
+    genreLabel.textColor = [UIColor blackColor];
+    _genreLabel = genreLabel;
+    
+    
+    
+    UILabel *pubdateLabel = [[UILabel alloc] init];
+    [centerView addSubview:pubdateLabel];
+    [pubdateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(centerView).offset(80);
+        make.height.mas_equalTo(40);
+        make.top.equalTo(centerView).offset(65);
+    }];
+    pubdateLabel.font = [UIFont systemFontOfSize:14];
+    pubdateLabel.textColor = [UIColor blackColor];
+    _pubdateLabel = pubdateLabel;
+    
+    
+ 
     //icon
-    UIImageView *iconLabel = [[UIImageView alloc] init];
+   UIImageView *iconLabel = [[UIImageView alloc] init];
     [centerView addSubview:iconLabel];
     [iconLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(15);
-        make.top.mas_equalTo(iconLabel.mas_right).mas_equalTo(15);
+        make.right.equalTo(centerView).offset(0);
+        make.height.mas_equalTo(50);
+        make.width.mas_equalTo(30);
+        make.top.equalTo(centerView).offset(50);
     }];
     _filmIcon = iconLabel;
-    
+  
     
     //director
+    /*
     interfaceView * directLable = [[interfaceView alloc] init];
     [centerView addSubview:directLable];
     [directLable mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(directLable.mas_right).mas_equalTo(2);
         make.top.mas_equalTo(directLable);
     }];
-    
-    //director icon
+    */
+ /*   //director icon
     UIImageView * directIcon = [[UIImageView alloc] init];
     [centerView addSubview:directIcon];
     [directIcon mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(directIcon.mas_right).mas_equalTo(2);
         make.top.mas_equalTo(directIcon);
     }];
-   // _DirectorsIcon = directIcon;
+   // _DirectorsIcon = directIcon; */
+ 
+    
     
     //castname
-    interfaceView * castLabel = [[interfaceView alloc]init];
+   UILabel * castLabel = [[UILabel alloc]init];
     [centerView addSubview:castLabel];
     [castLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(castLabel.mas_right).mas_equalTo(5);
-        make.top.mas_equalTo(castLabel);
+        make.left.equalTo(centerView).offset(80);
+        make.height.mas_equalTo(20);
+        make.top.equalTo(centerView).offset(70);
     }];
+    castLabel.font = [UIFont systemFontOfSize:14];
+    castLabel.textColor = [UIColor blackColor];
+    _castnameLabel = castLabel;
     
-    //casts icon
+ /*   //casts icon
     UIImageView * castIcon = [[UIImageView alloc] init];
     [centerView addSubview:castIcon];
     [castIcon mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -305,7 +395,7 @@
         make.top.mas_equalTo(castLabel);
     }];
     //_CastsIcon = castIcon;
-    
+  */
 }
 
 
@@ -314,26 +404,32 @@
     UIView * footerView = [[UIView alloc] init];
     [self.contentView addSubview:footerView];
     [footerView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(30);
-        make.bottom.mas_equalTo(-10);
+        make.left.equalTo(self.contentView).offset(0);
+        make.right.equalTo(self.contentView).offset(0);
+        make.height.mas_equalTo(45);
+        make.top.equalTo(self.contentView).offset(250);
     }];
-    
+    footerView.backgroundColor = [UIColor yellowColor];
+ /*
     //rate average
-    interfaceView * rateLabel = [[interfaceView alloc] init];
+    UILabel * rateLabel = [[UILabel alloc] init];
     [footerView addSubview:rateLabel];
     [rateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(rateLabel.mas_right).mas_equalTo(0);
-        make.top.mas_equalTo(rateLabel);
+        make.left.equalTo(footerView).offset(0);
+        make.height.mas_equalTo(30);
+        make.top.equalTo(footerView).offset(315);
     }];
-    
+    rateLabel.font = [UIFont systemFontOfSize:14];
+    rateLabel.textColor = [UIColor blackColor];
+    _rateAverageLabel = rateLabel; */
+    /*
     //stars
     interfaceView * starLabel = [[interfaceView alloc]init];
     [footerView addSubview:starLabel];
     [starLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(rateLabel.mas_right).mas_equalTo(6);
         make.top.mas_equalTo(rateLabel);
-    }];
+    }];*/
 }
 
 //gray underline
@@ -342,8 +438,10 @@
     grayView.backgroundColor =UIColor.grayColor;
     [self.contentView addSubview:grayView];
     [grayView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.left.right.mas_equalTo(0);
-        make.height.mas_equalTo(10);
+        make.left.equalTo(self.contentView).offset(0);
+        make.right.equalTo(self.contentView).offset(0);
+        make.height.mas_equalTo(2);
+        make.top.equalTo(self.contentView).offset(300);
     }];
 }
 

@@ -15,11 +15,11 @@
 //interfaceModel
 @interface interfaceModel: NSObject
 
-@property(nonatomic,strong) data_rating * rate;
+@property(nonatomic,strong) data_rating * rating;
 
 @property(nonatomic,strong) NSArray * genres;
 
-@property(nonatomic, copy) NSString * tile;
+@property(nonatomic, copy) NSString * title;
 
 @property(nonatomic, strong) NSArray<data_casts*> *casts;
 
@@ -75,13 +75,13 @@
 
 @property(nonatomic,assign) NSInteger one;
 
-@property(nonatomic,assign) NSInteger two;
-
 @property(nonatomic,assign) NSInteger three;
 
-@property(nonatomic,assign) NSInteger four;
+@property(nonatomic,assign) NSInteger two;
 
 @property(nonatomic,assign) NSInteger five;
+
+@property(nonatomic,assign) NSInteger four;
 
 @end
 
@@ -101,15 +101,16 @@
 //dataCasts
 @interface data_casts : NSObject
 
-@property(nonatomic, strong) data_avatars * avatars1;
+@property(nonatomic, copy) NSString * id;
 
-@property(nonatomic, copy) NSString * name_en1;
+@property(nonatomic, strong) data_avatars * avatars;
 
-@property(nonatomic,copy)NSString * name1;
+@property(nonatomic, copy) NSString * name_en;
 
-@property(nonatomic, copy)NSString * alt1;
+@property(nonatomic,copy)NSString * name;
 
-@property(nonatomic, copy) NSString * id1;
+@property(nonatomic, copy)NSString * alt;
+
 
 @end
 
@@ -117,15 +118,15 @@
 //dataDirectors
 @interface data_directors: NSObject
 
-@property(nonatomic, strong) data_avatars * avartas2;
+@property(nonatomic, strong) data_avatars * avartas;
 
-@property(nonatomic, copy) NSString * name_en2;
+@property(nonatomic, copy) NSString * name_en;
 
-@property(nonatomic, copy) NSString * name2;
+@property(nonatomic, copy) NSString * name;
 
-@property(nonatomic, copy)NSString * alt2;
+@property(nonatomic, copy)NSString * alt;
 
-@property(nonatomic, copy) NSString * id2;
+@property(nonatomic, copy) NSString * id;
 
 @end
 
