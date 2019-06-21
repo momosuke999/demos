@@ -29,15 +29,8 @@
 
 @end
 
-@implementation data_details
 
 
-@end
-
-
-@implementation data_avatars
-
-@end
 
 
 @implementation data_rating

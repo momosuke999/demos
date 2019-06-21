@@ -10,12 +10,12 @@
 #define interfaceModel_h
 #import <UIKit/UIKit.h>
 
-@class data_rating, data_casts, data_details, data_directors, data_avatars;
+@class data_rating, data_casts, data_directors;
 
 //interfaceModel
 @interface interfaceModel: NSObject
 
-@property(nonatomic,strong) data_rating * rating;
+@property(nonatomic,strong) NSDictionary * rating;
 
 @property(nonatomic,strong) NSArray * genres;
 
@@ -41,7 +41,7 @@
 
 @property(nonatomic, strong) NSArray * year;
 
-@property(nonatomic, strong) data_avatars * images;
+@property(nonatomic, strong) NSDictionary * images;
 
 @property(nonatomic,copy)NSString * alt;
 
@@ -58,9 +58,9 @@
 
 @property(nonatomic,assign) NSInteger max;
 
-@property(nonatomic,assign) NSInteger average;
+@property(nonatomic,assign) double average;
 
-@property(nonatomic, strong) data_details * details;
+@property(nonatomic, strong) NSDictionary * details;
 
 @property(nonatomic,assign) NSInteger stars;
 
@@ -71,6 +71,7 @@
 
 
 //dataDetails
+/*
 @interface data_details: NSObject
 
 @property(nonatomic,assign) NSInteger one;
@@ -82,34 +83,23 @@
 @property(nonatomic,assign) NSInteger five;
 
 @property(nonatomic,assign) NSInteger four;
+ */
 
-@end
 
 
-//dataAvartas
-@interface data_avatars: NSObject
-
-@property(nonatomic, copy) NSString *small;
-
-@property(nonatomic,copy) NSString *large;
-
-@property(nonatomic, copy) NSString *medium;
-
-@end
 
 
 //dataCasts
 @interface data_casts : NSObject
 
-@property(nonatomic, copy) NSString * id;
-
-@property(nonatomic, strong) data_avatars * avatars;
-
+@property(nonatomic, strong) NSDictionary * avatars;
 @property(nonatomic, copy) NSString * name_en;
 
 @property(nonatomic,copy)NSString * name;
 
 @property(nonatomic, copy)NSString * alt;
+
+@property(nonatomic, copy) NSString * id1;
 
 
 @end
@@ -118,7 +108,7 @@
 //dataDirectors
 @interface data_directors: NSObject
 
-@property(nonatomic, strong) data_avatars * avartas;
+@property(nonatomic, strong) NSDictionary * avartas;
 
 @property(nonatomic, copy) NSString * name_en;
 
@@ -126,7 +116,7 @@
 
 @property(nonatomic, copy)NSString * alt;
 
-@property(nonatomic, copy) NSString * id;
+@property(nonatomic, copy) NSString * id2;
 
 @end
 

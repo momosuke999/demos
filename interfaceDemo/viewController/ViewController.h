@@ -6,7 +6,7 @@
 //  Copyright © 2019年 CHUXIANWANG. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+//#import <UIKit/UIKit.h>
 #import "interfaceModel.h"
 @interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic,strong) NSArray * myDataArray;

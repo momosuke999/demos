@@ -73,12 +73,13 @@
     
     _filmNameLabel.text = InterfaceM.title;
     
-    NSString * imageURL =@"https://img1.doubanio.com/vie/photo/s_ratio_poster/public/p2558701068.jpg";
-    
+    NSDictionary * imageURLs =InterfaceM.images;
+    NSString * imageURL =[imageURLs objectForKey:@"small"];
     //NSData *data = [NSData dataWithContentsOfURL:[NSURL  URLWithString:imageURL]];
-    NSURL * imageurL = [NSURL URLWithString:imageURL];
-    UIImage * image =[UIImage imageWithData: [NSData dataWithContentsOfURL:imageurL]];
+    NSURL * imageurl = [NSURL URLWithString:imageURL];
+    UIImage * image =[UIImage imageWithData: [NSData dataWithContentsOfURL:imageurl]];
     _filmIcon.image = image;
+    _filmIcon.frame = CGRectMake(0, 0, 50, 90);
     
     if(InterfaceM.title != InterfaceM.original_title){
     _mainland_pubdateLabel.text =InterfaceM.original_title;
@@ -90,9 +91,24 @@
     //average
     //NSString * string4 = @"均分";
 
-    //_rateAverageLabel.text = [NSString stringWithFormat:@"%@: %@", string4, [NSString stringWithFormat:@"%ld", (long)InterfaceM.rating.stars]];
+/*
+    NSDictionary *rates = InterfaceM.rating;
+    
+    double d = [rates[@"average"] doubleValue];
+    NSString * dstr = [NSString stringWithFormat:@"%.2f", d];
+    NSString*string6 = @"评分";
+    if([dstr isEqualToString: @"0.00"]){
+        _rateAverageLabel.text = @"暂无评分";
+    }
+    //NSDecimalNumber *dn = [NSDecimalNumber decimalNumberWithString:dstr];    //NSString *string7 = [dn stringValue];
+    else{
+    _rateAverageLabel.text = [NSString stringWithFormat:@"%@: %@", string6,dstr];
+    }*/
+  
+    
     
     //stars
+  // NSDictionary * Stars = [rates dictionaryWithObjectsAndKeys:@"details", nil];
    // _starsLabel.text =[NSString stringWithFormat:@"%ld", (long)InterfaceM.rating.stars];
     
     
@@ -138,12 +154,12 @@
     //3.castname
     NSArray * castnameArray = InterfaceM.casts;
     NSString* castR = @"";
+    NSString * tempName2 = @"";
     for(int i =0; i < castnameArray.count; i++){
-        data_casts * setModel= castnameArray[i];
-        NSString* tempName = [NSString stringWithFormat:@"%@", setModel.name];
-        //NSString* tempName = setModel.name;
-        if(tempName.length){
-            castR = [castR stringByAppendingString:tempName];
+        NSDictionary * setModel= castnameArray[i];
+        tempName2 = [setModel objectForKey:@"name"];
+        if(tempName2.length){
+            castR = [castR stringByAppendingString:tempName2];
             if(i< castnameArray.count -1){
                   castR = [castR stringByAppendingString:@", "];
              }
@@ -154,51 +170,34 @@
  
     NSString * string3 = @"主演";
     _castnameLabel.text= [NSString stringWithFormat: @"%@: %@", string3,castR];
-    NSLog(@"----%@",_castnameLabel.text);
-    /*
+    _castnameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _castnameLabel.numberOfLines = 0;
+    _castnameLabel.preferredMaxLayoutWidth = 330;
+   // NSLog(@"----%@",_castnameLabel.text);
     
-    //4.castnameEn
-    NSArray * castnameEnArray = InterfaceM.casts;
-    NSString* castEnR = @"";
-    for(int i =0; i < castnameEnArray.count; i++){
-        data_casts * setModel= castnameEnArray[i];
-        NSString* tempName = setModel.name_en1;
-        castEnR = [castEnR stringByAppendingString:tempName ];
-        if(i< castnameEnArray.count -1){
-            castEnR = [castEnR stringByAppendingString:@", "];
-        }
-    }
-    _castsnameenLabel.text = castEnR;
+    
+    
     
     
     //5.directorname
     NSArray * directnameArray = InterfaceM.directors;
     NSString* directnameR = @"";
     for(int i =0; i < directnameArray.count; i++){
-        data_directors * setModel= directnameArray[i];
-        NSString* tempName = setModel.name2;
+        NSDictionary * setModel= directnameArray[i];
+        NSString * tempName = [setModel objectForKey:@"name"];
+        if(tempName.length){
         directnameR= [directnameR stringByAppendingString:tempName ];
         if(i< directnameArray.count -1){
             directnameR = [directnameR stringByAppendingString:@", "];
+            }
         }
     }
-    _directorsNameLabel.text = directnameR;
-    
-    
-    //6.directornameEn
-    NSArray * directnameEnArray = InterfaceM.directors;
-    NSString* directnameEnR = @"";
-    for(int i =0; i < directnameEnArray.count; i++){
-        data_directors * setModel= directnameEnArray[i];
-        NSString* tempName = setModel.name_en2;
-        directnameEnR= [directnameEnR stringByAppendingString:tempName ];
-        if(i< directnameEnArray.count -1){
-            directnameEnR = [directnameEnR stringByAppendingString:@", "];
-        }
-    }
-    _directorsNameEnLabel.text = directnameEnR;
-    
-    */
+    NSString * string4 = @"导演";
+    _directorsNameLabel.text= [NSString stringWithFormat: @"%@: %@", string4,directnameR];
+    _directorsNameLabel.lineBreakMode = NSLineBreakByWordWrapping;
+    _directorsNameLabel.numberOfLines = 0;
+    _directorsNameLabel.preferredMaxLayoutWidth = 330;
+
     
     //******************set update for array labels with image**********************//
     
@@ -247,7 +246,7 @@
     
     [self createFooterView];
     
-   [self creatGrayView];
+//   [self creatGrayView];
 }
 
 
@@ -347,23 +346,29 @@
    UIImageView *iconLabel = [[UIImageView alloc] init];
     [centerView addSubview:iconLabel];
     [iconLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.equalTo(centerView).offset(0);
-        make.height.mas_equalTo(50);
-        make.width.mas_equalTo(30);
-        make.top.equalTo(centerView).offset(50);
+        make.left.equalTo(centerView).offset(4);
+        make.height.mas_equalTo(100);
+        make.width.mas_equalTo(70);
+        make.top.equalTo(centerView).offset(60);
     }];
     _filmIcon = iconLabel;
   
     
     //director
-    /*
-    interfaceView * directLable = [[interfaceView alloc] init];
+    
+    UILabel* directLable = [[UILabel alloc] init];
     [centerView addSubview:directLable];
     [directLable mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(directLable.mas_right).mas_equalTo(2);
-        make.top.mas_equalTo(directLable);
+        make.left.equalTo(centerView).offset(80);
+        make.height.mas_equalTo(40);
+        make.top.equalTo(centerView).offset(115);
     }];
-    */
+    directLable.font = [UIFont systemFontOfSize:14];
+    directLable.textColor = [UIColor blackColor];
+    _directorsNameLabel = directLable;
+     
+     
+    
  /*   //director icon
     UIImageView * directIcon = [[UIImageView alloc] init];
     [centerView addSubview:directIcon];
@@ -373,6 +378,19 @@
     }];
    // _DirectorsIcon = directIcon; */
  
+    /*
+    
+    UILabel * rateLabel = [[UILabel alloc] init];
+    [centerView addSubview:rateLabel];
+    [rateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(centerView).offset(87);
+        make.height.mas_equalTo(18);
+        make.top.equalTo(centerView).offset(144);
+    }];
+    rateLabel.font = [UIFont systemFontOfSize:14];
+    rateLabel.textColor = [UIColor blackColor];
+    _rateAverageLabel = rateLabel;
+    */
     
     
     //castname
@@ -380,12 +398,15 @@
     [centerView addSubview:castLabel];
     [castLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(centerView).offset(80);
-        make.height.mas_equalTo(20);
-        make.top.equalTo(centerView).offset(70);
+        make.height.mas_equalTo(40);
+        make.top.equalTo(centerView).offset(93);
     }];
     castLabel.font = [UIFont systemFontOfSize:14];
     castLabel.textColor = [UIColor blackColor];
     _castnameLabel = castLabel;
+    
+    
+
     
  /*   //casts icon
     UIImageView * castIcon = [[UIImageView alloc] init];
@@ -410,18 +431,9 @@
         make.top.equalTo(self.contentView).offset(250);
     }];
     footerView.backgroundColor = [UIColor yellowColor];
- /*
+ 
     //rate average
-    UILabel * rateLabel = [[UILabel alloc] init];
-    [footerView addSubview:rateLabel];
-    [rateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(footerView).offset(0);
-        make.height.mas_equalTo(30);
-        make.top.equalTo(footerView).offset(315);
-    }];
-    rateLabel.font = [UIFont systemFontOfSize:14];
-    rateLabel.textColor = [UIColor blackColor];
-    _rateAverageLabel = rateLabel; */
+
     /*
     //stars
     interfaceView * starLabel = [[interfaceView alloc]init];

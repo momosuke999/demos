@@ -325,8 +325,8 @@
 		F36A1F6822AE33B50047D3AD /* viewController */ = {
 			isa = PBXGroup;
 			children = (
-				F36A1F3322AE32EA0047D3AD /* ViewController.h */,
 				F36A1F3422AE32EA0047D3AD /* ViewController.m */,
+				F36A1F3322AE32EA0047D3AD /* ViewController.h */,
 			);
 			path = viewController;
 			sourceTree = "<group>";
