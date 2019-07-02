@@ -8,7 +8,7 @@
 
 //#import <UIKit/UIKit.h>
 #import "interfaceModel.h"
-@interface ViewController : UIViewController<UITableViewDelegate, UITableViewDataSource>
+@interface ViewController : UITableViewController<UITableViewDelegate, UITableViewDataSource>
 @property (nonatomic,strong) NSArray * myDataArray;
 
 @end

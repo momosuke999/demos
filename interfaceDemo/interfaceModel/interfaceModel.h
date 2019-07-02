@@ -47,6 +47,9 @@
 
 @property(nonatomic, copy)NSString * idm;
 
+@property (nonatomic, strong) UIImage *FilmIconView;
+
+
 +(instancetype)interfaceModelWithDict:(NSDictionary *) Dictionary;
 
 @end
@@ -70,20 +73,6 @@
 
 
 
-//dataDetails
-/*
-@interface data_details: NSObject
-
-@property(nonatomic,assign) NSInteger one;
-
-@property(nonatomic,assign) NSInteger three;
-
-@property(nonatomic,assign) NSInteger two;
-
-@property(nonatomic,assign) NSInteger five;
-
-@property(nonatomic,assign) NSInteger four;
- */
 
 
 
@@ -99,7 +88,7 @@
 
 @property(nonatomic, copy)NSString * alt;
 
-@property(nonatomic, copy) NSString * id1;
+@property(nonatomic, copy) NSString * idm;
 
 
 @end
@@ -116,7 +105,7 @@
 
 @property(nonatomic, copy)NSString * alt;
 
-@property(nonatomic, copy) NSString * id2;
+@property(nonatomic, copy) NSString * idm;
 
 @end
 
