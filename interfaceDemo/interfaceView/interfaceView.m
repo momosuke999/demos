@@ -11,7 +11,8 @@
 //#import "interfaceModel.h"
 #import <UIKit/UIKit.h>
 #import "Masonry.h"
-
+//#import "EGOCache.h"
+#import <SDWebImage/SDWebImage.h>
 //@class data_casts;
 
 
@@ -34,15 +35,12 @@
     
     _filmNameLabel.text = InterfaceM.title;
     
-//    NSDictionary * imageURLs =InterfaceM.images;
-//    NSString * imageURL =[imageURLs objectForKey:@"small"];
-//    //NSData *data = [NSData dataWithContentsOfURL:[NSURL  URLWithString:imageURL]];
-//    NSURL * imageurl = [NSURL URLWithString:imageURL];
-  //  UIImage * image =[UIImage imageWithData: [NSData dataWithContentsOfURL:imageurl]];
- //   _filmIcon.image = image;
+   NSDictionary * imageURLs =InterfaceM.images;
+  NSString * imageURL =[imageURLs objectForKey:@"small"];
+    
+    [_filmIcon sd_setImageWithURL:[NSURL URLWithString:imageURL]];
    
-    
-    
+
     
     bool kanji = NO;
     for (int i=0; i<InterfaceM.original_title.length; i++) {
@@ -330,11 +328,11 @@
     //icon
  
     
-   //UIImageView *iconLabel = [[UIImageView alloc] init];
-  //  iconLabel.opaque = YES;
-    [self.contentView addSubview:self.filmIcon];
-  //  iconLabel.frame =CGRectMake(5, 100, 70, 100);
-   // _filmIcon = iconLabel;
+   UIImageView *iconLabel = [[UIImageView alloc] init];
+    iconLabel.opaque = YES;
+    [centerView addSubview:iconLabel];
+    iconLabel.frame =CGRectMake(5, 60, 70, 100);
+    _filmIcon = iconLabel;
   
     
     //director

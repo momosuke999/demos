@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F313972222CC9BB900BB8855 /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F313972122CC9BB900BB8855 /* SDWebImage.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		F313972422CC9D8F00BB8855 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F313972122CC9BB900BB8855 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F356693C22CB2E3F0084D511 /* ImageDownLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = F356693B22CB2E3F0084D511 /* ImageDownLoad.m */; };
 		F356694122CB2E810084D511 /* ImageDownload.m in Sources */ = {isa = PBXBuildFile; fileRef = F356694022CB2E810084D511 /* ImageDownload.m */; };
 		F35AB3FA22B0DE0200D0DC93 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F35AB3E122B0DE0200D0DC93 /* NSLayoutConstraint+MASDebugAdditions.m */; };
@@ -26,7 +28,6 @@
 		F36A1F3A22AE32EB0047D3AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F36A1F3922AE32EB0047D3AD /* Assets.xcassets */; };
 		F36A1F3D22AE32EB0047D3AD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F36A1F3B22AE32EB0047D3AD /* LaunchScreen.storyboard */; };
 		F36A1F4022AE32EB0047D3AD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A1F3F22AE32EB0047D3AD /* main.m */; };
-		F36A1F4A22AE32EB0047D3AD /* interfaceDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A1F4922AE32EB0047D3AD /* interfaceDemoTests.m */; };
 		F36A1F5522AE32EB0047D3AD /* interfaceDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A1F5422AE32EB0047D3AD /* interfaceDemoUITests.m */; };
 		F36A1F6322AE33240047D3AD /* interfaceView.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A1F6222AE33240047D3AD /* interfaceView.m */; };
 		F36A1F6722AE335E0047D3AD /* interfaceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F36A1F6622AE335E0047D3AD /* interfaceModel.m */; };
@@ -49,7 +50,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F313972522CC9D9000BB8855 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F313972422CC9D8F00BB8855 /* SDWebImage.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		F313972122CC9BB900BB8855 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Vendor/SDWebImage/SDWebImage.framework; sourceTree = "<group>"; };
 		F356693B22CB2E3F0084D511 /* ImageDownLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDownLoad.m; sourceTree = "<group>"; };
 		F356693F22CB2E5A0084D511 /* ImageDownload.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDownload.h; sourceTree = "<group>"; };
 		F356694022CB2E810084D511 /* ImageDownload.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDownload.m; sourceTree = "<group>"; };
@@ -90,8 +106,6 @@
 		F36A1F3E22AE32EB0047D3AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F36A1F3F22AE32EB0047D3AD /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F36A1F4522AE32EB0047D3AD /* interfaceDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = interfaceDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		F36A1F4922AE32EB0047D3AD /* interfaceDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = interfaceDemoTests.m; sourceTree = "<group>"; };
-		F36A1F4B22AE32EB0047D3AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F36A1F5022AE32EB0047D3AD /* interfaceDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = interfaceDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F36A1F5422AE32EB0047D3AD /* interfaceDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = interfaceDemoUITests.m; sourceTree = "<group>"; };
 		F36A1F5622AE32EB0047D3AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -106,6 +120,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F313972222CC9BB900BB8855 /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				F36A1F2F22AE32EA0047D3AD /* interfaceDemo */,
-				F36A1F4822AE32EB0047D3AD /* interfaceDemoTests */,
+				F313972122CC9BB900BB8855 /* SDWebImage.framework */,
 				F36A1F5322AE32EB0047D3AD /* interfaceDemoUITests */,
 				F36A1F2E22AE32EA0047D3AD /* Products */,
 			);
@@ -208,15 +223,6 @@
 				F36A1F3F22AE32EB0047D3AD /* main.m */,
 			);
 			path = interfaceDemo;
-			sourceTree = "<group>";
-		};
-		F36A1F4822AE32EB0047D3AD /* interfaceDemoTests */ = {
-			isa = PBXGroup;
-			children = (
-				F36A1F4922AE32EB0047D3AD /* interfaceDemoTests.m */,
-				F36A1F4B22AE32EB0047D3AD /* Info.plist */,
-			);
-			path = interfaceDemoTests;
 			sourceTree = "<group>";
 		};
 		F36A1F5322AE32EB0047D3AD /* interfaceDemoUITests */ = {
@@ -272,6 +278,7 @@
 				F36A1F2922AE32EA0047D3AD /* Sources */,
 				F36A1F2A22AE32EA0047D3AD /* Frameworks */,
 				F36A1F2B22AE32EA0047D3AD /* Resources */,
+				F313972522CC9D9000BB8855 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -417,7 +424,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F36A1F4A22AE32EB0047D3AD /* interfaceDemoTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -582,6 +588,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LC94G25K76;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/interfaceDemo/SDWebImage\\ 2019-07-03\\ 15-45-59/Products/Library/Frameworks",
+					"$(PROJECT_DIR)/Vendor/SDWebImage",
+				);
 				INFOPLIST_FILE = interfaceDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -599,6 +610,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = LC94G25K76;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/interfaceDemo/SDWebImage\\ 2019-07-03\\ 15-45-59/Products/Library/Frameworks",
+					"$(PROJECT_DIR)/Vendor/SDWebImage",
+				);
 				INFOPLIST_FILE = interfaceDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

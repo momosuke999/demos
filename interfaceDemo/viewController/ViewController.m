@@ -13,10 +13,14 @@
 
 
 
-@interface ViewController () <UIScrollViewDelegate>
+static NSString *CellIdentifier = @"interfaceViewCell";
+static NSString *PlaceholderCellIdentifier = @"PlaceholderCell";
 
-// the set of IconDownloader objects for each app
-@property (nonatomic, strong) NSMutableDictionary *imageDownloadsInProgress;
+
+@interface ViewController ()
+
+
+@property (nonatomic, strong) UITableView * tableView;
 
 @end
 
@@ -29,33 +33,37 @@
     // Do any additional setup after loading the view, typically from a nib.
    // self.view.backgroundColor = [UIColor greenColor];
     //initialize the tableview
-  /*  UITableView *myTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20)];
-    myTableView.delegate = self;
-    myTableView.dataSource = self;
-    [self.view addSubview:myTableView];*/
-    
-    _imageDownloadsInProgress = [NSMutableDictionary dictionary];
-    
+    self.tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 20, self.view.bounds.size.width, self.view.bounds.size.height - 20)];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    [self.view addSubview:self.tableView];
     
     
  if (_myDataArray == nil) {
-   NSURL * url = [NSURL URLWithString:@"https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%B1%B1%BE%A9&start=0&count=100&client=&udid="];
-    NSURLRequest * request = [NSURLRequest requestWithURL:url];
-  
-    [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse * _Nullable response, NSData * _Nullable data, NSError * _Nullable connectionError) {
-        NSDictionary * dict = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:nil];
-        NSArray *  subjectsArray = dict[@"subjects"];
-        NSMutableArray * dataArray = [[NSMutableArray alloc] init];
-        // dataArray = [[NSMutableArray alloc] init];
-        for (NSDictionary * tempDict in subjectsArray) {
-            interfaceModel * model = [interfaceModel interfaceModelWithDict:tempDict];
-            [dataArray addObject:model];
-            
-        }
-        
-        self->_myDataArray = dataArray;
-        [self.tableView reloadData];
-    }];
+     
+     NSString * url = @"https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=%B1%B1%BE%A9&start=0&count=100&client=&udid=";
+     
+     NSURL * jsonURL = [NSURL URLWithString:url];
+     
+     NSURLSession * session = [NSURLSession sharedSession];
+     
+     
+     NSURLSessionTask * msgtask = [session dataTaskWithURL:jsonURL completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+         NSString *retString = [NSString stringWithUTF8String:[data bytes]];
+         
+         NSData * getJsonData = [retString dataUsingEncoding:NSUTF8StringEncoding];
+         NSDictionary * getDict = [NSJSONSerialization JSONObjectWithData:getJsonData options:kNilOptions error:nil];
+         NSMutableArray * dataArray = [[NSMutableArray alloc] init];
+         NSArray *  subjectsArray  = getDict[@"subjects"];
+         for (NSDictionary * tempDict in subjectsArray) {
+             interfaceModel* model = [interfaceModel interfaceModelWithDict:tempDict];
+             [dataArray addObject:model];
+         }
+         self->_myDataArray = dataArray;
+         [self.tableView reloadData];
+     }];
+     
+     [msgtask resume];
  }
 }
 
@@ -80,60 +88,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellidentifier = @"cellidentifier";
-    interfaceView * cell = nil;
+    interfaceView * cell = [tableView dequeueReusableCellWithIdentifier:cellidentifier];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    if(_myDataArray.count == 0 && indexPath.row == 0){
-        cell =  [tableView dequeueReusableCellWithIdentifier:cellidentifier forIndexPath:indexPath];
+    if(cell == nil){
+        cell =[ [[interfaceView alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellidentifier]autorelease];
     }
-    
-    else{
-        cell = [tableView dequeueReusableCellWithIdentifier:cellidentifier forIndexPath:indexPath];
-        if(_myDataArray.count > 0){
-            interfaceModel * filmRecord = self.myDataArray[indexPath.row];
-                cell.InterfaceM = filmRecord;
-            if(!filmRecord.FilmIconView){
-                if(self.tableView.dragging == NO && self.tableView.decelerating == NO){
-                    [self startImageDownload:filmRecord forIndexPath:indexPath];
-                }
-                cell.filmIcon.image = [UIImage imageNamed:@"Placeholder.png"];
-            }
-            
-            else{
-                cell.filmIcon.image = filmRecord.FilmIconView;
-            }
-            
-        }
-    }
+    cell.InterfaceM = _myDataArray[indexPath.row];//load data and view to cells
+
+  //  [cell.filmIcon sd_setImageWithURL:[NSURL URLWithString:url]];
+
     return cell;
 }
-
-
-
-
-- (void)startImageDownload:(interfaceModel *)filmRecord forIndexPath:(NSIndexPath *)indexPath{
-    ImageDownload * imageDownloader = (self.imageDownloadsInProgress)[indexPath];
-    if(imageDownloader == nil){
-        imageDownloader = [[ImageDownload alloc] init];
-        imageDownloader.filmRecord = filmRecord;
-        [imageDownloader setCompletionHandler:^{
-            interfaceView * cell = [self.tableView cellForRowAtIndexPath:indexPath];
-            
-            cell.filmIcon.image = filmRecord.FilmIconView;
-            
-            [self.imageDownloadsInProgress removeObjectForKey:indexPath];
-        }];
-        (self.imageDownloadsInProgress)[indexPath] = imageDownloader;
-        [imageDownloader startDownload];
-    }
-}
-
-
-
-
-
-
-
 
 
 

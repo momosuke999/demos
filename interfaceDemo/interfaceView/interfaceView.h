@@ -11,6 +11,7 @@
 //@class interfaceModel;
 #import <UIKit/UIKit.h>
 #import "interfaceModel.h"
+
 @interface interfaceView: UITableViewCell
 
 @property (nonatomic, weak) IBOutlet UILabel * filmNameLabel;
@@ -22,7 +23,7 @@
 @property (nonatomic, weak) IBOutlet UILabel * pubdateLabel;
 @property (nonatomic, weak) IBOutlet UILabel * genreLabel;
 @property (nonatomic, weak) IBOutlet UILabel *mainland_pubdateLabel;
-
+//@property (nonatomic,strong) EGOImageView * filmIcon;
 
 @property (nonatomic, strong) interfaceModel * InterfaceM;
 //@property(nonatomic, strong) UILabel * _filmNameLabel;
